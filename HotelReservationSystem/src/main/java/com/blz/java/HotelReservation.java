@@ -7,7 +7,8 @@ import java.util.Map.Entry;
 
 public class HotelReservation {
 	Map<Integer, String> hotelList = new HashMap<Integer, String>();
-	Map<Integer, Integer> hoteltotalRates = new HashMap<Integer, Integer>();
+	Map<Integer, Integer> hoteltotalWeekdayRates = new HashMap<Integer, Integer>();
+	Map<Integer, Integer> hoteltotalWeekendRates = new HashMap<Integer, Integer>();
 	HotelDetails hotelDetails = new HotelDetails();
 
 	public int getSize() {
@@ -15,17 +16,35 @@ public class HotelReservation {
 		return hotelList.size();
 	}
 
-	public int getCheapestRate(int noOfDays) {
+	public int getCheapestWeekdayRate(int noOfDays) {
 		for (int i = 1; i <= hotelList.size(); i++) {
-			hoteltotalRates.put(i, noOfDays * hotelDetails.getHotelRates(i));
+			hoteltotalWeekdayRates.put(i, noOfDays * hotelDetails.getHotelWeekdayRates(i));
 		}
-		int cheapestRate = Collections.min(hoteltotalRates.values());
-		return cheapestRate;
+		int cheapestWeekdayRate = Collections.min(hoteltotalWeekdayRates.values());
+		return cheapestWeekdayRate;
 	}
 
-	public String getCheapestHotel(int rate) {
+	public String getCheapestWeekdayHotel(int rate) {
 		int hotelId = 0;
-		for (Entry<Integer, Integer> entry : hoteltotalRates.entrySet()) {
+		for (Entry<Integer, Integer> entry : hoteltotalWeekdayRates.entrySet()) {
+			if (entry.getValue().equals(rate)) {
+				hotelId = entry.getKey();
+			}
+		}
+		return hotelDetails.getHotelName(hotelId);
+	}
+	
+	public int getCheapestWeekendRate(int noOfDays) {
+		for (int i = 1; i <= hotelList.size(); i++) {
+			hoteltotalWeekendRates.put(i, noOfDays * hotelDetails.getHotelWeekendRates(i));
+		}
+		int cheapestWeekendRate = Collections.min(hoteltotalWeekendRates.values());
+		return cheapestWeekendRate;
+	}
+
+	public String getCheapestWeekendHotel(int rate) {
+		int hotelId = 0;
+		for (Entry<Integer, Integer> entry : hoteltotalWeekendRates.entrySet()) {
 			if (entry.getValue().equals(rate)) {
 				hotelId = entry.getKey();
 			}

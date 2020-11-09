@@ -27,9 +27,13 @@ public class HotelReservationTest {
 		dateList.add("10sep2020");
 		dateList.add("11sep2020");
 		int totaldays = dateList.size();
-		int cheapestRate = reservation.getCheapestRate(totaldays);
-		String cheapestHotel = reservation.getCheapestHotel(cheapestRate);
-		Assert.assertEquals("Lakewood", cheapestHotel);
-		System.out.println(cheapestHotel + ", Total Charges: " + cheapestRate);
+		int cheapestWeekdayRate = reservation.getCheapestWeekdayRate(totaldays);
+		String cheapestWeekdayHotel = reservation.getCheapestWeekdayHotel(cheapestWeekdayRate);
+		Assert.assertEquals("Lakewood", cheapestWeekdayHotel);
+		int cheapestWeekendRate = reservation.getCheapestWeekendRate(totaldays);
+		String cheapestWeekendHotel = reservation.getCheapestWeekendHotel(cheapestWeekendRate);
+		Assert.assertEquals("Bridgewood", cheapestWeekendHotel);
+		System.out.println("Cheapest Weekday Hotel: "+cheapestWeekdayHotel+", Total Charges: "+cheapestWeekdayRate);
+		System.out.println("Cheapest Weekend Hotel: "+cheapestWeekendHotel+", Total Charges: "+cheapestWeekendRate);
 	}
 }
