@@ -27,9 +27,9 @@ public class HotelReservation {
 		int totalRates = 0;
 		for(String day : dayList) {
 			if(day != "Sat" && day != "Sun")
-				totalRates = totalRates + hotelDetails.getHotelWeekdayRates(hotelId);
+				totalRates = totalRates + hotelDetails.getHotelWeekdayRatesForRewardCustomer(hotelId);
 			else
-				totalRates = totalRates + hotelDetails.getHotelWeekendRates(hotelId);
+				totalRates = totalRates + hotelDetails.getHotelWeekendRatesForRewardCustomer(hotelId);
 		}
 		return totalRates;
 	}

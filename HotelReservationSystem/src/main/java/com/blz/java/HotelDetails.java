@@ -15,17 +15,31 @@ public class HotelDetails {
 		return hotelName;
 	}
 	
-	public int getHotelWeekdayRates(int id) {
+	public int getHotelWeekdayRatesForRegularCustomer(int id) {
 		hotelRates.put(1, 110);
 		hotelRates.put(2, 160);
 		hotelRates.put(3, 220);
 		return hotelRates.get(id);
 	}
 	
-	public int getHotelWeekendRates(int id) {
+	public int getHotelWeekendRatesForRegularCustomer(int id) {
 		hotelRates.put(1, 90);
 		hotelRates.put(2, 60);
 		hotelRates.put(3, 150);
+		return hotelRates.get(id);
+	}
+	
+	public int getHotelWeekdayRatesForRewardCustomer(int id) {
+		hotelRates.put(1, 80);
+		hotelRates.put(2, 110);
+		hotelRates.put(3, 100);
+		return hotelRates.get(id);
+	}
+	
+	public int getHotelWeekendRatesForRewardCustomer(int id) {
+		hotelRates.put(1, 80);
+		hotelRates.put(2, 50);
+		hotelRates.put(3, 40);
 		return hotelRates.get(id);
 	}
 	
