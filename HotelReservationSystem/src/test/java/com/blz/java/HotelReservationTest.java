@@ -56,7 +56,7 @@ public class HotelReservationTest {
 	}
 	
 	@Test
-	public void givenDates_whenWeekdayAndWeekend_FindCheapestRate_ReturnHotelName_withBestRating() {
+	public void givenDates_whenWeekdayAndWeekend_ForRegularCustomer_FindCheapestRate_ReturnHotelName_withBestRating() {
 		String customerType = "Regular";
 		List<String> dateRange = Arrays.asList("11/9/2020", "12/9/2020");
 		List<String> dayList = new ArrayList<>();
