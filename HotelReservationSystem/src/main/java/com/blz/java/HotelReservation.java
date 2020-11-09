@@ -1,14 +1,16 @@
 package com.blz.java;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public class HotelReservation {
 	Map<Integer, String> hotelList = new HashMap<Integer, String>();
-	Map<Integer, Integer> hoteltotalWeekdayRates = new HashMap<Integer, Integer>();
-	Map<Integer, Integer> hoteltotalWeekendRates = new HashMap<Integer, Integer>();
+	Map<Integer, Integer> hoteltotalRates = new HashMap<Integer, Integer>();
+	List<String> cheapRateHotel = new ArrayList<>();
 	HotelDetails hotelDetails = new HotelDetails();
 
 	public int getSize() {
@@ -16,39 +18,29 @@ public class HotelReservation {
 		return hotelList.size();
 	}
 
-	public int getCheapestWeekdayRate(int noOfDays) {
+	public int getCheapestRate(List<String> dayList) {
 		for (int i = 1; i <= hotelList.size(); i++) {
-			hoteltotalWeekdayRates.put(i, noOfDays * hotelDetails.getHotelWeekdayRates(i));
+			int totalRates = 0;
+			for(String day : dayList) {
+				if(day != "Sat" && day != "Sun")
+					totalRates = totalRates + hotelDetails.getHotelWeekdayRates(i);
+				else
+					totalRates = totalRates + hotelDetails.getHotelWeekendRates(i);
+			}
+			hoteltotalRates.put(i, totalRates);
 		}
-		int cheapestWeekdayRate = Collections.min(hoteltotalWeekdayRates.values());
-		return cheapestWeekdayRate;
+		int cheapestRate = Collections.min(hoteltotalRates.values());
+		return cheapestRate;
 	}
 
-	public String getCheapestWeekdayHotel(int rate) {
+	public List<String> getCheapestHotel(int rate) {
 		int hotelId = 0;
-		for (Entry<Integer, Integer> entry : hoteltotalWeekdayRates.entrySet()) {
+		for (Entry<Integer, Integer> entry : hoteltotalRates.entrySet()) {
 			if (entry.getValue().equals(rate)) {
 				hotelId = entry.getKey();
+				cheapRateHotel.add(hotelDetails.getHotelName(hotelId));
 			}
 		}
-		return hotelDetails.getHotelName(hotelId);
-	}
-	
-	public int getCheapestWeekendRate(int noOfDays) {
-		for (int i = 1; i <= hotelList.size(); i++) {
-			hoteltotalWeekendRates.put(i, noOfDays * hotelDetails.getHotelWeekendRates(i));
-		}
-		int cheapestWeekendRate = Collections.min(hoteltotalWeekendRates.values());
-		return cheapestWeekendRate;
-	}
-
-	public String getCheapestWeekendHotel(int rate) {
-		int hotelId = 0;
-		for (Entry<Integer, Integer> entry : hoteltotalWeekendRates.entrySet()) {
-			if (entry.getValue().equals(rate)) {
-				hotelId = entry.getKey();
-			}
-		}
-		return hotelDetails.getHotelName(hotelId);
+		return cheapRateHotel;
 	}
 }

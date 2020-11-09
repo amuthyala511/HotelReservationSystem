@@ -6,8 +6,7 @@ import java.util.Map;
 public class HotelDetails {
 	Map<Integer, String> hotels;
 	Map<Integer, String> hotelName = new HashMap<Integer, String>();
-	Map<Integer, Integer> hotelWeekdayRates = new HashMap<Integer, Integer>();
-	Map<Integer, Integer> hotelWeekendRates = new HashMap<Integer, Integer>();
+	Map<Integer, Integer> hotelRates = new HashMap<Integer, Integer>();
 
 	public Map<Integer, String> getHotels() {
 		hotelName.put(1, "Lakewood");
@@ -17,21 +16,20 @@ public class HotelDetails {
 	}
 
 	public String getHotelName(int id) {
-		hotels = getHotels();
 		return hotelName.get(id);
 	}
 	
 	public int getHotelWeekdayRates(int id) {
-		hotelWeekdayRates.put(1, 110);
-		hotelWeekdayRates.put(2, 160);
-		hotelWeekdayRates.put(3, 220);
-		return hotelWeekdayRates.get(id);
+		hotelRates.put(1, 110);
+		hotelRates.put(2, 160);
+		hotelRates.put(3, 220);
+		return hotelRates.get(id);
 	}
 	
 	public int getHotelWeekendRates(int id) {
-		hotelWeekendRates.put(1, 90);
-		hotelWeekendRates.put(2, 60);
-		hotelWeekendRates.put(3, 150);
-		return hotelWeekendRates.get(id);
+		hotelRates.put(1, 90);
+		hotelRates.put(2, 60);
+		hotelRates.put(3, 150);
+		return hotelRates.get(id);
 	}
 }
