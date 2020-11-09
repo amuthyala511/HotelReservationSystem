@@ -1,57 +1,15 @@
 package com.blz.java;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class HotelDetails {
-	private String hotelName;
-	private int rating;
-	private String customerType;
-	private int weekdayRate;
-	private int weekendRate;
+	Map<String, Integer> hotelRegularRates = new HashMap<String, Integer>();
 	
-	public HotelDetails(String hotelName, int rating, String customerType, int weekdayRate, int weekendRate) {
-		this.hotelName = hotelName;
-		this.rating = rating;
-		this.customerType = customerType;
-		this.weekdayRate = weekdayRate;
-		this.weekendRate = weekendRate;
-	}
-	
-	public String getHotelName() {
-		return hotelName;
-	}
-	public void setHotelName( String hotelName) {
-		this.hotelName = hotelName;
-	}
-	
-	public int getRating() {
-		return rating;
-	}
-	public void setRating( int rating) {
-		this.rating = rating;
-	}
-	
-	public String getCustomerType() {
-		return customerType;
-	}
-	public void setCustomerType( String customerType) {
-		this.customerType = customerType;
-	}
-	
-	public int getWeekDayRate() {
-		return weekdayRate;
-	}
-	public void setWeekDayRate( int weekdayRate) {
-		this.weekdayRate = weekdayRate;
-	}
-	
-	public int getWeekendRate() {
-		return weekendRate;
-	}
-	public void setWeekEndRate( int weekendRate) {
-		this.weekendRate = weekendRate;
-	}
-	
-	@Override
-	public String toString() {
-		return "HotelDetails [ HotelName : "+hotelName+", Rating : "+rating+", CustomerType : "+customerType+", Weekday-charges : "+weekdayRate+", Weekend-Charges : "+weekendRate+" ]";
+	public Map<String, Integer> getHotels() {
+		hotelRegularRates.put("Lakewood", 110);
+		hotelRegularRates.put("Bridgewood", 160);
+		hotelRegularRates.put("Ridgewood", 220);
+		return hotelRegularRates;
 	}
 }
