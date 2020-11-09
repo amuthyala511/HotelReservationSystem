@@ -11,6 +11,7 @@ public class HotelReservation {
 	Map<Integer, String> hotelList = new HashMap<Integer, String>();
 	Map<Integer, Integer> hoteltotalRates = new HashMap<Integer, Integer>();
 	List<String> cheapRateHotel = new ArrayList<>();
+	Map<Integer, Integer> hotelCheapestRating = new HashMap<Integer, Integer>();
 	HotelDetails hotelDetails = new HotelDetails();
 
 	public int getSize() {
@@ -42,5 +43,30 @@ public class HotelReservation {
 			}
 		}
 		return cheapRateHotel;
+	}
+	
+	public String getCheapestBestRatedHotel(List<String> cheapestHotel) {
+		for(int i = 0; i <= cheapestHotel.size(); i++) {
+			for(String cheapHotel : cheapestHotel)
+				hotelCheapestRating.put(i, getHotelRatingBasedOnHotel(cheapHotel));
+		}
+		int bestRating = Collections.max(hotelCheapestRating.values());
+		int hotelNo = 0;
+		for(Entry<Integer, Integer> entry : hotelCheapestRating.entrySet()) {
+			if(entry.getValue().equals(bestRating)) {
+				hotelNo = entry.getKey();
+			}
+		}
+		return hotelDetails.getHotelName(hotelNo);
+	}
+
+	public int getHotelRatingBasedOnHotel(String inputHotel) {
+		int hotelNum = 0;
+		for(Entry<Integer, String> entry : hotelList.entrySet()) {
+			if(entry.getValue().equals(inputHotel)) {
+				hotelNum = entry.getKey();
+			}
+		}
+		return hotelDetails.getHotelRatings(hotelNum);
 	}
 }
