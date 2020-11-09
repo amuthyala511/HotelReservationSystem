@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HotelDetails {
-	Map<Integer, String> hotels;
 	Map<Integer, Integer> hotelRatings = new HashMap<Integer, Integer>();
 	Map<Integer, String> hotelName = new HashMap<Integer, String>();
 	Map<Integer, Integer> hotelRates = new HashMap<Integer, Integer>();
@@ -14,11 +13,6 @@ public class HotelDetails {
 		hotelName.put(2, "Bridgewood");
 		hotelName.put(3, "Ridgewood");
 		return hotelName;
-	}
-
-	public String getHotelName(int id) {
-		hotels = getHotels();
-		return hotelName.get(id);
 	}
 	
 	public int getHotelWeekdayRates(int id) {
@@ -35,10 +29,10 @@ public class HotelDetails {
 		return hotelRates.get(id);
 	}
 	
-	public int getHotelRatings(int id) {
+	public Map<Integer, Integer> getHotelRatings() {
 		hotelRatings.put(1, 3);
 		hotelRatings.put(2, 4);
 		hotelRatings.put(3, 5);
-		return hotelRatings.get(id);
+		return hotelRatings;
 	}
 }
