@@ -1,57 +1,30 @@
 package com.blz.java;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class HotelDetails {
-	private String hotelName;
-	private int rating;
-	private String customerType;
-	private int weekdayRate;
-	private int weekendRate;
-	
-	public HotelDetails(String hotelName, int rating, String customerType, int weekdayRate, int weekendRate) {
-		this.hotelName = hotelName;
-		this.rating = rating;
-		this.customerType = customerType;
-		this.weekdayRate = weekdayRate;
-		this.weekendRate = weekendRate;
-	}
-	
-	public String getHotelName() {
+
+	Map<Integer, String> hotels;
+	Map<Integer, String> hotelName = new HashMap<Integer, String>();
+	Map<Integer, Integer> hotelRates = new HashMap<Integer, Integer>();
+
+	public Map<Integer, String> getHotels() {
+		hotelName.put(1, "Lakewood");
+		hotelName.put(2, "Bridgewood");
+		hotelName.put(3, "Ridgewood");
 		return hotelName;
 	}
-	public void setHotelName( String hotelName) {
-		this.hotelName = hotelName;
+
+	public int getHotelRates(int id) {
+		hotelRates.put(1, 110);
+		hotelRates.put(2, 160);
+		hotelRates.put(3, 220);
+		return hotelRates.get(id);
 	}
-	
-	public int getRating() {
-		return rating;
-	}
-	public void setRating( int rating) {
-		this.rating = rating;
-	}
-	
-	public String getCustomerType() {
-		return customerType;
-	}
-	public void setCustomerType( String customerType) {
-		this.customerType = customerType;
-	}
-	
-	public int getWeekDayRate() {
-		return weekdayRate;
-	}
-	public void setWeekDayRate( int weekdayRate) {
-		this.weekdayRate = weekdayRate;
-	}
-	
-	public int getWeekendRate() {
-		return weekendRate;
-	}
-	public void setWeekEndRate( int weekendRate) {
-		this.weekendRate = weekendRate;
-	}
-	
-	@Override
-	public String toString() {
-		return "HotelDetails [ HotelName : "+hotelName+", Rating : "+rating+", CustomerType : "+customerType+", Weekday-charges : "+weekdayRate+", Weekend-Charges : "+weekendRate+" ]";
+
+	public String getHotelName(int id) {
+		hotels = getHotels();
+		return hotelName.get(id);
 	}
 }
